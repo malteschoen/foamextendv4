@@ -1,0 +1,4 @@
+Making dependency list for source file writeNormalsTauV4FE.C
+SOURCE=writeNormalsTauV4FE.C ;  g++ -m64 -Dlinux64 -DWM_DP -Wall -Wextra -Wno-unused-parameter -Wold-style-cast -Wnon-virtual-dtor -O3  -DNoRepository -ftemplate-depth-200 -I/opt/foam/foam-extend-4.0/src/finiteVolume/lnInclude     -I/opt/foam/foam-extend-4.0/src/meshTools/lnInclude     -I/opt/foam/foam-extend-4.0/src/sampling/lnInclude -IlnInclude -I. -I/opt/foam/foam-extend-4.0/src/foam/lnInclude -I/opt/foam/foam-extend-4.0/src/OSspecific/POSIX/lnInclude   -fPIC -c $SOURCE -o Make/linux64GccDPOpt/writeNormalsTauV4FE.o
+writeNormalsTauV4FE.dep:700: recipe for target 'Make/linux64GccDPOpt/writeNormalsTauV4FE.o' failed
+make: *** [Make/linux64GccDPOpt/writeNormalsTauV4FE.o] Interrupt
