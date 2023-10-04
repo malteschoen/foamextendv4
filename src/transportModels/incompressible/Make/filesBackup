@@ -1,0 +1,18 @@
+viscosityModels/viscosityModel/viscosityModel.C
+viscosityModels/viscosityModel/newViscosityModel.C
+viscosityModels/Newtonian/Newtonian.C
+viscosityModels/powerLaw/powerLaw.C
+viscosityModels/CrossPowerLaw/CrossPowerLaw.C
+viscosityModels/BirdCarreau/BirdCarreau.C
+viscosityModels/HerschelBulkley/HerschelBulkley.C
+viscosityModels/freeSurface/freeSurface.C
+viscosityModels/GermanCarreau/GermanCarreau.C
+viscosityModels/localGermanCarreau/localGermanCarreau.C
+viscosityModels/DoubleGermanCarreauConcentration/DoubleGermanCarreauConcentration.C
+
+transportModel/transportModel.C
+singlePhaseTransportModel/singlePhaseTransportModel.C
+
+incompressibleTwoPhaseMixture/twoPhaseMixture.C
+
+LIB = $(FOAM_USER_LIBBIN)/libincompressibleTransportModels

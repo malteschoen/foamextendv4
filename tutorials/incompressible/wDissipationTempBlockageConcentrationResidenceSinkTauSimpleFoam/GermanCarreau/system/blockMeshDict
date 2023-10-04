@@ -1,0 +1,346 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  dev                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.001;
+
+feedCubeEdgeMeasure 					50;
+feedCubeLength 							50;
+
+outletCubeWidth							150;
+outletCubeHeight						50;
+outletCubeLength 						100;
+
+cellsPerAxis							33;
+
+feedCubeEdgeMinusHalf 					#calc "0.5*$feedCubeEdgeMeasure*(-1)";
+feedCubeEdgePlusHalf 					#calc "0.5*$feedCubeEdgeMeasure";
+feedCubeLengthMinusHalf 				#calc "0.5*$feedCubeLength*(-1)";
+feedCubeLengthPlusHalf 					#calc "0.5*$feedCubeLength";
+//outletCubeEdgeMinusHalf 				#calc "0.5*$outletCubeEdgeMeasure*(-1)";
+//outletCubeEdgePlusHalf 				#calc "0.5*$outletCubeEdgeMeasure";
+
+
+D	63.5;								//diameter of screw in milimeters
+pitch 1; 								//pitch of screw expressed in multiples of D
+relativeWidthOfFlight 0.1;				//width of flight expressed in multiples of D
+totalScrewLenght	13;					//total length of screw expressed in D (but subtract 2)
+radialGap			0.25;				// radial gap in milimeters
+
+feedingSectionChannelDepth 8.89;		//channel depth in feeding section ABC in milimeters
+feedingSectionChannelLength 1;			//length of feeding section in Diameters (but subtract 1)
+
+meteringSectionChannelDepth 3.18;		//channel depth in metering section DEF in milimeters
+meteringSectionChannelLength  7;		//length of feeding section in Diameters (but subtract 1)
+
+xStart 0;								//starting coordinate, to be used for shifting everything around
+yStart 0;								//starting coordinate, to be used for shifting everything around
+zStart 0;								//starting coordinate, to be used for shifting everything around
+
+xcellsChannel 5; 						// mesh resolution (main channel depth direction (x-Axis))
+xcellsGap 2; 							// mesh resolution 
+
+ycellsChannel 30;						// mesh resolution (main channel width direction (y-Axis))
+ycellsGap 3;							// mesh resolution
+
+zCellsPerD 		50;						// cells per 1 diameter of screw
+
+compressionZoneLenght	#calc "$totalScrewLenght-$feedingSectionChannelLength-$meteringSectionChannelLength";
+decreaseInChannelDepth	#calc "$feedingSectionChannelDepth-$meteringSectionChannelDepth";
+
+zCellsAB				#calc "$zCellsPerD";
+zCellsBC				#calc "$feedingSectionChannelLength*$zCellsPerD";	
+zCellsCD				#calc "$compressionZoneLenght*$zCellsPerD";
+zCellsDE				#calc "$meteringSectionChannelLength*$zCellsPerD";
+zCellsEF				#calc "$zCellsPerD";
+
+absoluteChannelY 		#calc "$pitch*$D*(1-$relativeWidthOfFlight)";
+absoluteFlightY 		#calc "$pitch*$D*($relativeWidthOfFlight)";
+
+
+
+//schematic
+// 
+// 	
+// 	   		[0]---[1]
+//  /\		 |	   |		   
+// 	y		 |	   |		   
+// 	-		 |	   |		   
+// 	A		 |	   |		   
+// 	x		 |	   |		   
+// 	i  		[3]---[4]
+// 	s		 			
+//  |
+//  X----x-Axis----->
+// 	z-Axis points towards you
+
+
+//sectionA coordinates
+sectionA_z 				#calc "$feedCubeLengthMinusHalf";
+
+//sectionA_6_x 			#calc "$xStart";	 		
+//sectionA_6_y			#calc "$yStart";
+
+//sectionA_7_x 			#calc "$xStart+$radialGap";			
+//sectionA_7_y			#calc "$yStart";
+
+sectionA_3_x 			#calc "$feedCubeEdgeMinusHalf";			
+sectionA_3_y			#calc "$feedCubeEdgeMinusHalf";
+
+sectionA_4_x 			#calc "$feedCubeEdgePlusHalf";		
+sectionA_4_y			#calc "$feedCubeEdgeMinusHalf";	
+
+//sectionA_5_x 			#calc "$xStart+$radialGap+$feedingSectionChannelDepth";		
+//sectionA_5_y			#calc "$yStart+$absoluteFlightY";
+
+sectionA_0_x 			#calc "$feedCubeEdgeMinusHalf";				
+sectionA_0_y			#calc "$feedCubeEdgePlusHalf";	
+
+sectionA_1_x 			#calc "$feedCubeEdgePlusHalf";		
+sectionA_1_y			#calc "$feedCubeEdgePlusHalf";	
+
+//sectionA_2_x 			#calc "$xStart+$radialGap+$feedingSectionChannelDepth";		
+//sectionA_2_y			#calc "$yStart+$absoluteFlightY+$absoluteChannelY";
+
+//section B coordinates
+sectionB_z 				#calc "$feedCubeLengthPlusHalf";
+
+//sectionB_6_x 			#calc "$sectionA_6_x";	 		
+//sectionB_6_y			#calc "$sectionA_6_y+$D*$pitch";
+
+//sectionB_7_x 			#calc "$sectionA_7_x";			
+//sectionB_7_y			#calc "$sectionA_7_y+$D*$pitch";
+
+sectionB_3_x 			#calc "$feedCubeEdgeMinusHalf";			
+sectionB_3_y			#calc "$feedCubeEdgeMinusHalf";
+
+sectionB_4_x 			#calc "$feedCubeEdgePlusHalf";		
+sectionB_4_y			#calc "$feedCubeEdgeMinusHalf";	
+
+//sectionB_5_x 			#calc "$sectionA_5_x";		
+//sectionB_5_y			#calc "$sectionA_5_y+$D*$pitch";
+
+sectionB_0_x 			#calc "$feedCubeEdgeMinusHalf";				
+sectionB_0_y			#calc "$feedCubeEdgePlusHalf";	
+
+sectionB_1_x 			#calc "$feedCubeEdgePlusHalf";		
+sectionB_1_y			#calc "$feedCubeEdgePlusHalf";	
+
+//sectionB_2_x 			#calc "$sectionA_2_x";		
+//sectionB_2_y			#calc "$sectionA_2_y+$D*$pitch";
+
+//section C coordinates
+sectionC_z 				#calc "$sectionB_z+$outletCubeLength";
+
+//sectionC_6_x 			#calc "$sectionB_6_x";	 		
+//sectionC_6_y			#calc "$sectionB_6_y+$D*$pitch*$feedingSectionChannelLength";
+
+//sectionC_7_x 			#calc "$sectionB_7_x";			
+//sectionC_7_y			#calc "$sectionB_7_y+$D*$pitch*$feedingSectionChannelLength";
+
+sectionC_3_x 			#calc "0.5*$outletCubeHeight*(-1)";		
+sectionC_3_y			#calc "0.5*$outletCubeWidth*(-1)";
+
+sectionC_4_x 			#calc "0.5*$outletCubeHeight";	
+sectionC_4_y			#calc "0.5*$outletCubeWidth*(-1)";
+
+//sectionC_5_x 			#calc "$sectionB_5_x";		
+//sectionC_5_y			#calc "$sectionB_5_y+$D*$pitch*$feedingSectionChannelLength";
+
+sectionC_0_x 			#calc "0.5*$outletCubeHeight*(-1)";			
+sectionC_0_y			#calc "0.5*$outletCubeWidth";
+
+sectionC_1_x 			#calc "0.5*$outletCubeHeight";		
+sectionC_1_y			#calc "0.5*$outletCubeWidth";	
+
+//sectionC_2_x 			#calc "$sectionB_2_x";		
+//sectionC_2_y			#calc "$sectionB_2_y+$D*$pitch*$feedingSectionChannelLength";
+
+
+vertices
+(
+    name A0 ($sectionA_0_x  $sectionA_0_y $sectionA_z) 
+    name A1 ($sectionA_1_x  $sectionA_1_y $sectionA_z)
+    //name A2 ($sectionA_2_x  $sectionA_2_y $sectionA_z) 
+    name A3 ($sectionA_3_x  $sectionA_3_y $sectionA_z)
+    name A4 ($sectionA_4_x  $sectionA_4_y $sectionA_z) 
+    //name A5 ($sectionA_5_x  $sectionA_5_y $sectionA_z)
+ 	//name A6 ($sectionA_6_x  $sectionA_6_y $sectionA_z) 
+    //name A7 ($sectionA_7_x  $sectionA_7_y $sectionA_z)
+	
+	name B0 ($sectionB_0_x  $sectionB_0_y $sectionB_z) 
+    name B1 ($sectionB_1_x  $sectionB_1_y $sectionB_z)
+    //name B2 ($sectionB_2_x  $sectionB_2_y $sectionB_z) 
+    name B3 ($sectionB_3_x  $sectionB_3_y $sectionB_z)
+    name B4 ($sectionB_4_x  $sectionB_4_y $sectionB_z) 
+    //name B5 ($sectionB_5_x  $sectionB_5_y $sectionB_z)
+ 	//name B6 ($sectionB_6_x  $sectionB_6_y $sectionB_z) 
+    //name B7 ($sectionB_7_x  $sectionB_7_y $sectionB_z)
+	
+	name C0 ($sectionC_0_x  $sectionC_0_y $sectionC_z) 
+    name C1 ($sectionC_1_x  $sectionC_1_y $sectionC_z)
+    //name C2 ($sectionC_2_x  $sectionC_2_y $sectionC_z) 
+    name C3 ($sectionC_3_x  $sectionC_3_y $sectionC_z)
+    name C4 ($sectionC_4_x  $sectionC_4_y $sectionC_z) 
+    //name C5 ($sectionC_5_x  $sectionC_5_y $sectionC_z)
+ 	//name C6 ($sectionC_6_x  $sectionC_6_y $sectionC_z) 
+    //name C7 ($sectionC_7_x  $sectionC_7_y $sectionC_z)
+	
+
+);                
+
+blocks
+(
+//SEGMENT A TO B
+	
+    //inlet zone channel gap block
+	hex (A3 A4 A1 A0 B3 B4 B1 B0) 		fluid ($cellsPerAxis		$cellsPerAxis		$cellsPerAxis) 			simpleGrading (1 1 1) 
+	
+//SEGMENT B TO C	
+
+	
+	//feeding zone channel gap block 
+	hex (B3 B4 B1 B0 C3 C4 C1 C0) 		fluid ($cellsPerAxis 		$cellsPerAxis 		$cellsPerAxis) 			simpleGrading (1 1 1) 
+);
+
+edges
+(
+   
+);
+   
+defaultPatch
+{
+    name defaultName;
+    type wall;
+}   
+
+boundary
+( 
+ 
+    centralInlet
+    {
+        type wall;
+        faces
+        (
+        (A0 A1 A4 A3)
+        );
+    } 
+	
+	leftInlet
+    {
+        type wall;
+        faces
+        (
+        (A3 B3 B4 A4)
+        );
+    } 
+	
+	rightInlet
+    {
+        type wall;
+        faces
+        (
+        (A0 B0 B1 A1)
+        );
+    } 
+	
+	
+    outlet
+    {
+        type patch; 
+        faces
+        (
+        (C0 C1 C4 C3)
+        );
+    } 
+
+    /*
+	gap_active
+    {
+        type cyclicAMI; 
+			neighbourPatch gap_passive;
+        faces
+        (
+        (B6 C6 C7 B7)
+        (C6 D6 D7 C7)
+        (D6 E6 E7 D7)
+	    (E6 F6 F7 E7)
+        );
+    } 
+	*/
+	
+	/*
+	gap_passive
+    {
+        type cyclicAMI; 
+		neighbourPatch gap_active;
+        faces
+        (
+		(A0 B0 B1 A1)
+        (B0 C0 C1 B1)
+		(C0 D0 D1 C1)
+        (D0 E0 E1 D1)
+        );
+    } 
+	*/
+
+	/*
+	cylinder
+    {
+        type patch;
+        faces
+        (
+		(A0 B0 B3 A3)
+		
+		(B0 C0 C3 B3)	
+		(B3 C3 C6 B6)
+	
+		(C0 D0 D3 C3)	
+		(C3 D3 D6 C6)
+		
+		(D0 E0 E3 D3)	
+		(D3 E3 E6 D6)
+		
+		(E0 F0 F3 E3)	
+		(E3 F3 F6 E6)
+	
+        );
+    } 
+	*/
+	
+
+	/*weird
+    {
+        type patch;
+        faces
+        (
+		(A0 B0 B3 A3)
+		
+		(B0 C0 C3 B3)	
+		(B3 C3 C6 B6)
+	
+		(C0 D0 D3 C3)	
+		(C3 D3 D6 C6)
+		
+		(D0 E0 E3 D3)	
+		(D3 E3 E6 D6)
+		
+		(E0 F0 F3 E3)	
+		(E3 F3 F6 E6)
+	
+        );
+    } 
+	*/
+);
