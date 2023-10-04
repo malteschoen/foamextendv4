@@ -7,7 +7,8 @@ viscosityModels/BirdCarreau/BirdCarreau.C
 viscosityModels/HerschelBulkley/HerschelBulkley.C
 viscosityModels/freeSurface/freeSurface.C
 viscosityModels/GermanCarreau/GermanCarreau.C
-viscosityModels/smartGermanCarreauV4FE/smartGermanCarreauV4FE.C
+viscosityModels/localGermanCarreau/localGermanCarreau.C
+viscosityModels/DoubleGermanCarreauConcentration/DoubleGermanCarreauConcentration.C
 
 transportModel/transportModel.C
 singlePhaseTransportModel/singlePhaseTransportModel.C
