@@ -1,7 +1,0 @@
-Making dependency list for source file viscosityModels/smartGermanCarreauV4FE/smartGermanCarreauV4FE.C
-SOURCE=viscosityModels/smartGermanCarreauV4FE/smartGermanCarreauV4FE.C ;  g++ -m64 -Dlinux64 -DWM_DP -Wall -Wextra -Wno-unused-parameter -Wold-style-cast -Wnon-virtual-dtor -O3  -DNoRepository -ftemplate-depth-200 -I..     -I/opt/foam/foam-extend-4.0/src/finiteVolume/lnInclude -IlnInclude -I. -I/opt/foam/foam-extend-4.0/src/foam/lnInclude -I/opt/foam/foam-extend-4.0/src/OSspecific/POSIX/lnInclude   -fPIC -c $SOURCE -o Make/linux64GccDPOpt/smartGermanCarreauV4FE.o
-viscosityModels/smartGermanCarreauV4FE/smartGermanCarreauV4FE.C: In member function ‘Foam::tmp<Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> > Foam::viscosityModels::smartGermanCarreauV4FE::calcNu() const’:
-viscosityModels/smartGermanCarreauV4FE/smartGermanCarreauV4FE.C:57:24: warning: unused variable ‘Tcurrent’ [-Wunused-variable]
-  const volScalarField& Tcurrent=U_.mesh().lookupObject<volScalarField>("T");
-                        ^
-'/home/ikvgummisim/foam/ikvgummisim-4.0/lib/linux64GccDPOpt/libincompressibleTransportModels.so' is up to date.
