@@ -1,12 +1,8 @@
 1. run "blockMesh", overwrite the "0" folder by unzipping "0.7z".
 
-2. Size and position the sink area by means of "sink.stl"
+2. Size and position the fluid and solid areas by means of "flowChannel.stl" or "inletChannel.stl"
 
-3. Calculate the amount of heat extracted/added. Start with a heating/cooling rate in W/cm³, divide the rate by [the product of nominal density (= melt density) and nominal heat capacity (= melt heat capacity)]. The result is a cooling rate (negative) or heating rate (positive). Make sure to input this in "system/setFieldsDict"
+3. Run "setFieldsDict" to set up  "materials" and "DT" (thermal diffusivity) in accordance with the "flowChannel.stl" and/or "inletChannel.stl".
 
-4. Size and position the fluid and solid areas by means of "flowChannel.stl" or "inletChannel.stl"
-
-5. Run "setFieldsDict" to set up "sink", "materials" and "DT" (thermal diffusivity) in accordance with the "flowChannel.stl" and/or "inletChannel.stl" and "sink.stl"
-
-6. Run "wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE" to calculate fields of velocity ("W"), pressure ("p"), temperature ("T"), concentration and residence time.
+4. Run "wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE" to calculate fields of velocity ("W"), pressure ("p"), temperature ("T"), concentration and residence time.
 
