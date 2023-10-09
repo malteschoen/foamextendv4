@@ -1,0 +1,95 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6.0                                   |
+|   \\  /    A nd           | Website:  https://openfoam.org                  |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+            volScalarFieldValue materials 1	//indicates non-fluid part of the mesh
+            volScalarFieldValue DT 1.1e-5	//thermal diffusivity of 1.2738
+	        volScalarFieldValue sink 0	//thermal diffusivity of 1.2738		
+);
+
+regions
+(
+    surfaceToCell
+	{      
+    file			"flowChannel.stl";
+
+	outsidePoints	((0 0 -10e-3));
+	useSurfaceOrientation true;
+	
+	
+	//enable one of the following five
+	nearDistance 	-1;			//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
+	includeInside	true;		// pick all cells entirely within the geometry.stl
+	includeOutside	false;		// pick all cells entirely outside of geometry.stl
+	includeCut		true;		// pick all cells intersected by geometry.stl
+	curvature		-100;		//-100 means deactivated, combine this with nearDistance
+			
+        fieldValues
+        (
+            volScalarFieldValue materials 0	//indicates fluid part of the mesh
+            volScalarFieldValue DT 1.6e-7	//thermal diffusivity of HPDE Hostalen GD9550F
+        );
+    }
+	
+    surfaceToCell
+	{      
+    file			"inletChannel.stl";
+
+	outsidePoints	((0 0 -10e-3));
+	useSurfaceOrientation false;
+	
+	
+	//enable one of the following five
+	nearDistance 	-1;			//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
+	includeInside	true;		// pick all cells entirely within the geometry.stl
+	includeOutside	false;		// pick all cells entirely outside of geometry.stl
+	includeCut		true;		// pick all cells intersected by geometry.stl
+	curvature		-100;		//-100 means deactivated, combine this with nearDistance
+			
+        fieldValues
+        (
+            volScalarFieldValue materials 0	//indicates fluid part of the mesh
+            volScalarFieldValue DT 1.6e-7	//thermal diffusivity of HPDE Hostalen GD9550F
+        );
+    }
+	
+	    surfaceToCell
+	{      
+    file			"sink.stl";
+
+	outsidePoints	((0 0 -10e-3));
+	useSurfaceOrientation false;
+	
+	
+	//enable one of the following five
+	nearDistance 	-1;			//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
+	includeInside	true;		// pick all cells entirely within the geometry.stl
+	includeOutside	false;		// pick all cells entirely outside of geometry.stl
+	includeCut		true;		// pick all cells intersected by geometry.stl
+	curvature		-100;		//-100 means deactivated, combine this with nearDistance
+			
+        fieldValues
+        (
+            volScalarFieldValue sink -15	//indicates fluid part of the mesh
+        );
+    }
+
+);
+
+ 
+
+// *********************

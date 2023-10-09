@@ -1,0 +1,77 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+d2dt2Schemes
+{
+    default         steadyState;
+}
+
+ddtSchemes
+{
+    default         steadyState;
+}
+
+gradSchemes
+{
+    default         						extendedLeastSquares 0;
+    grad(U)        							extendedLeastSquares 0 ;
+	grad((meltPressurePrefix*pFluid)        extendedLeastSquares 0;
+    snGradCorr(U)   						extendedLeastSquares 0 ;
+	grad(W)         						cellLimited Gauss linear 1;
+    grad(T)	    							Gauss linear;
+	grad(residenceTime)	    				Gauss linear;
+	grad(p)									Gauss linear;
+}
+
+divSchemes
+{
+    default        								none;
+    div(sigma)      							Gauss linear;
+	div(phi,W)     								Gauss linearUpwindV grad(W);
+    div(phi,T)      							Gauss linearUpwind grad(T);
+    div((nuEff*dev(T(grad(W))))) 				Gauss linear;
+    div(phi,residenceTime)       				Gauss linearUpwind grad(residenceTime);
+    div(tau)							Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         							Gauss linear corrected;
+    laplacian(DU,U) 							Gauss linear corrected;
+	laplacian(DT,T) 							Gauss linear corrected;
+	laplacian(nuEff,W) 							Gauss linear corrected;
+}
+
+snGradSchemes
+{
+    snGrad(U)       corrected;
+	snGrad(p)		corrected;
+    snGrad(W)       corrected;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+wallDist
+{
+    method meshWave;
+}
+
+
+// ************************************************************************* //

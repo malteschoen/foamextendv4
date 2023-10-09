@@ -1,0 +1,184 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  dev                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.001;
+
+feedCubeEdgeMeasure 					50;
+feedCubeLength 							50;
+
+outletCubeWidth							150;
+outletCubeHeight						50;
+outletCubeLength 						100;
+
+cellsPerAxis							33;
+
+feedCubeEdgeMinusHalf 					-25;	//#calc "0.5*$feedCubeEdgeMeasure*(-1)";
+feedCubeEdgePlusHalf 					25;		//#calc "0.5*$feedCubeEdgeMeasure";
+feedCubeLengthMinusHalf 				-25;	//#calc "0.5*$feedCubeLength*(-1)";
+feedCubeLengthPlusHalf 					25;		//#calc "0.5*$feedCubeLength";
+
+//schematic
+// 
+// 	
+// 	   		[0]---[1]
+//  /\		 |	   |		   
+// 	y		 |	   |		   
+// 	-		 |	   |		   
+// 	A		 |	   |		   
+// 	x		 |	   |		   
+// 	i  		[3]---[4]
+// 	s		 			
+//  |
+//  X----x-Axis----->
+// 	z-Axis points towards you
+
+sectionA_z 				-25;	//#calc "$feedCubeLengthMinusHalf";
+sectionA_3_x 			-25;		//#calc "$feedCubeEdgeMinusHalf";			
+sectionA_3_y			-25;	//#calc "$feedCubeEdgeMinusHalf";
+sectionA_4_x 			25;		//#calc "$feedCubeEdgePlusHalf";		
+sectionA_4_y			-25;	//#calc "$feedCubeEdgeMinusHalf";	
+sectionA_0_x 			-25;	//#calc "$feedCubeEdgeMinusHalf";				
+sectionA_0_y			25;		//#calc "$feedCubeEdgePlusHalf";	
+sectionA_1_x 			25;		//#calc "$feedCubeEdgePlusHalf";		
+sectionA_1_y			25;		//#calc "$feedCubeEdgePlusHalf";	
+
+
+sectionB_z 				25;		//#calc "$feedCubeLengthPlusHalf";
+sectionB_3_x 			-25;	//#calc "$feedCubeEdgeMinusHalf";			
+sectionB_3_y			-25;	//#calc "$feedCubeEdgeMinusHalf";
+sectionB_4_x 			25;		//#calc "$feedCubeEdgePlusHalf";		
+sectionB_4_y			-25;	//#calc "$feedCubeEdgeMinusHalf";	
+sectionB_0_x 			-25;	//#calc "$feedCubeEdgeMinusHalf";				
+sectionB_0_y			25;		//#calc "$feedCubeEdgePlusHalf";	
+sectionB_1_x 			25;		//#calc "$feedCubeEdgePlusHalf";		
+sectionB_1_y			25;		//#calc "$feedCubeEdgePlusHalf";	
+
+
+sectionC_z 				125;	//#calc "$sectionB_z+$outletCubeLength";
+sectionC_3_x 			-25;	//#calc "0.5*$outletCubeHeight*(-1)";		
+sectionC_3_y			-75;	//#calc "0.5*$outletCubeWidth*(-1)";
+sectionC_4_x 			25;		//#calc "0.5*$outletCubeHeight";	
+sectionC_4_y			-75;	//#calc "0.5*$outletCubeWidth*(-1)";
+sectionC_0_x 			-25;	//#calc "0.5*$outletCubeHeight*(-1)";			
+sectionC_0_y			75;		//#calc "0.5*$outletCubeWidth";
+sectionC_1_x 			25;		//#calc "0.5*$outletCubeHeight";		
+sectionC_1_y			75;		//#calc "0.5*$outletCubeWidth";	
+
+
+
+
+vertices
+(
+    //0
+	($sectionA_0_x  $sectionA_0_y $sectionA_z) 
+	//1
+    ($sectionA_1_x  $sectionA_1_y $sectionA_z)
+    //2
+	($sectionA_3_x  $sectionA_3_y $sectionA_z)
+    //3
+	($sectionA_4_x  $sectionA_4_y $sectionA_z) 
+
+	
+	//4
+	($sectionB_0_x  $sectionB_0_y $sectionB_z) 
+    //5
+	($sectionB_1_x  $sectionB_1_y $sectionB_z)
+    //6
+	($sectionB_3_x  $sectionB_3_y $sectionB_z)
+    //7
+	($sectionB_4_x  $sectionB_4_y $sectionB_z) 
+
+	
+	//8
+	($sectionC_0_x  $sectionC_0_y $sectionC_z) 
+	//9
+	($sectionC_1_x  $sectionC_1_y $sectionC_z)
+    //10
+	($sectionC_3_x  $sectionC_3_y $sectionC_z)
+    //11
+	($sectionC_4_x  $sectionC_4_y $sectionC_z) 
+
+	
+
+);                
+
+blocks
+(
+//SEGMENT A TO B
+	
+    //inlet zone channel gap block
+	hex (2 3 1 0 6 7 5 4) 		fluid ($cellsPerAxis		$cellsPerAxis		$cellsPerAxis) 			simpleGrading (1 1 1) 
+	
+//SEGMENT B TO C	
+
+	
+	//feeding zone channel gap block 
+	hex (6 7 5 4 10 11 9 8) 		fluid ($cellsPerAxis 		$cellsPerAxis 		$cellsPerAxis) 			simpleGrading (1 1 1) 
+);
+
+edges
+(
+   
+);
+   
+defaultPatch
+{
+    name defaultName;
+    type wall;
+}   
+
+boundary
+( 
+ 
+    centralInlet
+    {
+        type wall;
+        faces
+        (
+        (0 1 3 2)
+        );
+    } 
+	
+	leftInlet
+    {
+        type wall;
+        faces
+        (
+        (2 6 7 3)
+        );
+    } 
+	
+	rightInlet
+    {
+        type wall;
+        faces
+        (
+        (0 4 5 1)
+        );
+    } 
+	
+	
+    outlet
+    {
+        type patch; 
+        faces
+        (
+        (8 9 11 10)
+        );
+    } 
+
+   
+);

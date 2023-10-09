@@ -1,0 +1,99 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6.0                                   |
+|   \\  /    A nd           | Website:  https://openfoam.org                  |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+			//everything here is steel (materials 1, DT = 1e-5) with no preload (pFastener = 0)
+            volScalarFieldValue materials 1
+            volScalarFieldValue DT 1e-5
+
+);
+
+regions
+(
+
+    surfaceToCell
+	{      
+    file			"flowChannelDrossel.stl";
+
+	outsidePoints	((0.002324032597243786 0 0.007743653842906083));
+	useSurfaceOrientation false;
+	
+	
+	//enable one of the following five
+	nearDistance 	0.0005;			//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
+	includeInside	true;		// pick all cells entirely within the geometry.stl
+	includeOutside	false;		// pick all cells entirely outside of geometry.stl
+	includeCut		true;		// pick all cells intersected by geometry.stl
+	curvature		-100;		//-100 means deactivated, combine this with nearDistance
+			
+        fieldValues
+        (
+			//everything here is melt (materials 0, DT = 3e-7)
+            volScalarFieldValue materials 0
+            volScalarFieldValue DT 3e-7
+        );
+    }
+	
+	    surfaceToCell
+	{      
+    file			"flowChannelSM.stl";
+
+	outsidePoints	((0.002324032597243786 0 0.007743653842906083));
+	useSurfaceOrientation false;
+	
+	
+	//enable one of the following five
+	nearDistance 	0.0005;			//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
+	includeInside	true;		// pick all cells entirely within the geometry.stl
+	includeOutside	false;		// pick all cells entirely outside of geometry.stl
+	includeCut		true;		// pick all cells intersected by geometry.stl
+	curvature		-100;		//-100 means deactivated, combine this with nearDistance
+			
+        fieldValues
+        (
+			//everything here is melt (materials 0, DT = 3e-7)
+            volScalarFieldValue materials 0
+            volScalarFieldValue DT 3e-7
+        );
+    }
+    surfaceToCell
+	{      
+    file			"flowChannelSpace.stl";
+
+	outsidePoints	((0.002324032597243786 0 0.007743653842906083));
+	useSurfaceOrientation false;
+	
+	
+	//enable one of the following five
+	nearDistance 	0.0005;			//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
+	includeInside	true;		// pick all cells entirely within the geometry.stl
+	includeOutside	false;		// pick all cells entirely outside of geometry.stl
+	includeCut		true;		// pick all cells intersected by geometry.stl
+	curvature		-100;		//-100 means deactivated, combine this with nearDistance
+			
+        fieldValues
+        (
+			//everything here is melt (materials 0, DT = 3e-7)
+            volScalarFieldValue materials 0
+            volScalarFieldValue DT 3e-7
+        );
+    }
+);
+
+ 
+
+// *********************
