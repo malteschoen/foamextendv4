@@ -9,21 +9,24 @@ we have solvers for extrusion operation (stationary, incompressible) taking into
 3. ... a coextrusion model based on concentration tracking - depending on concentration, different values of the Carreau-WLF-model are used in each cell
 
 # i just wanna try solid mechanics
-*splendid!
-*
+* splendid!
+* before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE from applications/solvers/incompressible using wmake.
+* also, you will need to compile /applications/solvers/solidMechanics/immersedTauFastenerElasticSolidFoam using wmake
+* having arrived there, follow the local readMe instructions
+
 
 # i just wanna try the heat-sink stuff
-*excellent!
-*before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE from applications/solvers/incompressible using wmake.
-*then head for the tutorialHeatSink folder
-*having arrived there, follow the local readMe instructions
+* excellent!
+* before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE from applications/solvers/incompressible using wmake.
+* then head for the tutorialHeatSink folder
+* having arrived there, follow the local readMe instructions
 
 # i just wanna try coextrusion
-*magnificient!
-*before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE from applications/solvers/incompressible using wmake.
-*also you'll need to compile the DoubleGermanCarreau material model from \src\transportModels\incompressible using wmake libso
-*then head for the tutorialCoextrusion folder
-*having arrived there, follow the local readMe instructions
+* magnificient!
+* before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE from applications/solvers/incompressible using wmake.
+* also you'll need to compile the DoubleGermanCarreau material model from \src\transportModels\incompressible using wmake libso
+* then head for the tutorialCoextrusion folder
+* having arrived there, follow the local readMe instructions
 
 # todo
 organise nice tutorials for

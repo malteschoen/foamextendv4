@@ -89,11 +89,11 @@ SIMPLE
 
     residualControl
     {
-        p               	1e-5;
-        W               	1e-5;
-        T					1e-5;
-		concentration 		1e-5;
-		residenceTime		1e-5;
+        p               	1e-4;
+        W               	1e-4;
+        T					1e-4;
+		concentration 		1e-4;
+		residenceTime		1e-4;
     }
 }
 
