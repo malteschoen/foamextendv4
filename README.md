@@ -12,6 +12,7 @@ we have solvers for extrusion operation (stationary, incompressible) taking into
 * splendid!
 * before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE from applications/solvers/incompressible using wmake.
 * also, you will need to compile /applications/solvers/solidMechanics/immersedTauFastenerElasticSolidFoam using wmake
+* then head for the tutorialSolidMechanics folder
 * having arrived there, follow the local readMe instructions
 
 
