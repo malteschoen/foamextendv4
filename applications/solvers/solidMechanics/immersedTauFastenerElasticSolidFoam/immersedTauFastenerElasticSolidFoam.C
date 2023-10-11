@@ -136,6 +136,7 @@ int main(int argc, char *argv[])
 	dimensionSet dimMeterSet (0,0,1,0,0,0,0);
 
 	//calculation of cell volumina and characteristical cell length
+	//this is a satanic hack! Jana will hate me for this :-)
 	meshVolumes.internalField() = mesh.V();
 	meshVolumes.dimensions().reset(dimLessSet);
 	volScalarField meshLengths ("meshLengths",meshVolumes);
