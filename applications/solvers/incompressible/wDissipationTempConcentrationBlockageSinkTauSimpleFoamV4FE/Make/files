@@ -1,3 +1,0 @@
-wDissipationTempConcentrationBlockageSinkTauSimpleFoamV4FE.C
-
-EXE = $(FOAM_USER_APPBIN)/wDissipationTempConcentrationBlockageSinkTauSimpleFoamV4FE

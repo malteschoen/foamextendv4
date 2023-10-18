@@ -1,6 +1,5 @@
 # foamextendv4
-this should run with foam-extend version 4
-todo: check performance in fe-v4.1 and fe-v5.x
+this was built with foam-extend version 4.0. however, it also runs under fe4.1 and fe5.0
 
 # what is this?
 we have solvers for extrusion operation (stationary, incompressible) taking into account both solids and fluids. More precisely, we have ...

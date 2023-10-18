@@ -1,3 +1,0 @@
-immersedElasticSolidFoam.C
-
-EXE = $(FOAM_USER_APPBIN)/immersedElasticSolidFoam
