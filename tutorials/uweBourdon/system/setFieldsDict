@@ -17,71 +17,36 @@ FoamFile
 defaultFieldValues
 (
             volScalarFieldValue materials 1	//indicates non-fluid part of the mesh
-            volScalarFieldValue DT 1.1e-5	//thermal diffusivity of solid steel 1.2738
-	        volScalarFieldValue sink 0		//solid steel does not function as a heat sink outside of cooling bores	
+            volScalarFieldValue DT 1e-5	//thermal diffusivity of some generic steel
+
 );
 
 regions
 (
-    surfaceToCell
-	{      
-    file			"flowChannel.stl";
-
-	outsidePoints	((0 0 -10e-3));
-	useSurfaceOrientation true;
-	
-	
-	//enable one of the following five
-	nearDistance 	-1;			//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
-	includeInside	true;		// pick all cells entirely within the geometry.stl
-	includeOutside	false;		// pick all cells entirely outside of geometry.stl
-	includeCut		true;		// pick all cells intersected by geometry.stl
-	curvature		-100;		//-100 means deactivated, combine this with nearDistance
-			
-        fieldValues
+    	cylinderToCell
+   	{
+       	p1       (0 0 2e-3); // start point on cylinder axis
+       	p2       (0 0 22e-3);   // end point on cylinder axis
+       	radius   63e-3;
+       	fieldValues
         (
             volScalarFieldValue materials 0	//indicates fluid part of the mesh
-            volScalarFieldValue DT 1.6e-7	//thermal diffusivity of HPDE Hostalen GD9550F
+            volScalarFieldValue DT 1e-7		//thermal diffusivity of some generic plastics melt
         );
-    }
-	
-    surfaceToCell
-	{      
-    file			"inletChannel.stl";
+    	}
 
-	outsidePoints	((0 0 -10e-3));
-	useSurfaceOrientation false;
-	
-	
-	//enable one of the following five
-	nearDistance 	-1;			//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
-	includeInside	true;		// pick all cells entirely within the geometry.stl
-	includeOutside	false;		// pick all cells entirely outside of geometry.stl
-	includeCut		true;		// pick all cells intersected by geometry.stl
-	curvature		-100;		//-100 means deactivated, combine this with nearDistance
-			
-        fieldValues
+    	cylinderToCell
+   	{
+       	p1       (0 0 2e-3); // start point on cylinder axis
+       	p2       (0 0 22e-3);   // end point on cylinder axis
+       	radius   61e-3;
+       	fieldValues
         (
-            volScalarFieldValue materials 0	//indicates fluid part of the mesh
-            volScalarFieldValue DT 1.6e-7	//thermal diffusivity of HPDE Hostalen GD9550F
+            volScalarFieldValue materials 1	//indicates non-fluid part of the mesh
+            volScalarFieldValue DT 1e-5	//thermal diffusivity of some generic steel
         );
-    }
-
-	//this represents a 12 mm screw pushing down on the die.
-	cylinderToCell
-	{
-	p1 (0.0175 0.0000 0.1200);
-	p2 (0.0200 0.0000 0.1200);
-	radius 0.012;
-	fieldValues
-        (	
-			// unless you hate yourself, leave pFastener at the value of (0 0 0)to make the screw not do anything.
-			// if you hate yourself, use (2e8 0 0) to enforce a pressure of 2000 bar pointing in x-Direction, equivalent to a force of 23 kiloNewton. For reference, the nominal force of M12 12.9-grade screw according to VDI 2230 is around 25 kiloNewton.
-			volVectorFieldValue pFastener (0 0 0)
-			
-        );
-	}
-
+    	}	
+   
 );
 
  

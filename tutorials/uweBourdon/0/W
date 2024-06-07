@@ -21,113 +21,30 @@ internalField   uniform (0.01 0 0);
 
 boundaryField
 {
-    defaultName
+    inlet
     {
         type            fixedValue;
-        value		uniform (0 0 0);
+	value		uniform (0 0.1 0);
     }
-    wall
+    innerRadius
     {
-        type            fixedValue;
-        value		uniform (0 0 0);
+        type            zeroGradient;
+    }
+    outerRadius
+    {
+        type            zeroGradient;
     }
     outlet
     {
         type            zeroGradient;
     }
-	
-    centralInlet
+    leftHand
     {
-        type            fixedValue;
-        value		uniform (0.0 0 0);
+        type            zeroGradient;
     }
-	
-	/*funkyLeftInlet
+    rightHand
     {
-        type            codedFixedValue;
-        value           uniform (0 0 0);
-        name            leftProfileInlet;
-        code            #{
-        
-		const fvPatch& boundaryPatch = patch(); 
-        const vectorField& Cf = boundaryPatch.Cf();
-	    //const volScalarField& Tcurrent=U_.mesh().lookupObject<volScalarField>("T");
-        //scalar currentTime = this->db().time().value();
-	    vectorField& field = *this;				
-
-	   	scalar leftMaxRadius = 9.5e-3;
-		
-        forAll(Cf, faceI)					
-            {
-			scalar z_coord = Cf[faceI].z();
-			scalar x_coord = Cf[faceI].x();		
-			scalar testRadius = sqrt(z_coord*z_coord+x_coord*x_coord);
-		
-		
-		vector leftSpeed = vector(0,-0.010,0);
-		
-		if (
-			 testRadius < leftMaxRadius
-		   )
-		{		
-		field[faceI] = leftSpeed;
-		}
-		else
-		{		
-		field[faceI] = vector(0,0,0);
-		}
-	    }			
-        #};
-    }	
-
-	funkyRightInlet
-    {
-        type            codedFixedValue;
-        value           uniform (0 0 0);
-        name            rightProfileInlet;
-        code            #{
-        
-		const fvPatch& boundaryPatch = patch(); 
-        const vectorField& Cf = boundaryPatch.Cf();
-	    //const volScalarField& Tcurrent=U_.mesh().lookupObject<volScalarField>("T");
-        scalar currentTime = this->db().time().value();
-	    vectorField& field = *this;				
-
-	   	scalar rightMaxRadius = 9.5e-3;
-		
-        forAll(Cf, faceI)					
-            {
-			scalar z_coord = Cf[faceI].z();
-			scalar x_coord = Cf[faceI].x();		
-			scalar testRadius = sqrt(z_coord*z_coord+x_coord*x_coord);
-		
-		
-		vector rightSpeed = vector(0,0.010,0);
-		
-		if (
-			 testRadius < rightMaxRadius
-		   )
-		{		
-		field[faceI] = rightSpeed;
-		}
-		else
-		{		
-		field[faceI] = vector(0,0,0);
-		}
-	    }			
-        #};
-    }	
-	*/
-	
-	rightInlet
-    {
-        type            fixedValue;
-        value		uniform (0 -0.01 0);
-    }
-	leftInlet
-    {
-        type            fixedValue;
-        value		uniform (0 0.01 0);
+        type            zeroGradient;
     }	
 	
 }
