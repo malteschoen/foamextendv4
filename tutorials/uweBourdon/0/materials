@@ -11,6 +11,7 @@ FoamFile
     class       volScalarField;
     location    "0";
     object      materials;
+    version	4;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

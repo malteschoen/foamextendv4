@@ -12,6 +12,7 @@ FoamFile
     note        "nPoints: 132651 nCells: 125000 nFaces: 382500 nInternalFaces: 367500";
     location    "constant/polyMesh";
     object      neighbour;
+    version	4;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
