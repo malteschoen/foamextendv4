@@ -15,9 +15,9 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 //transportModel  GermanCarreau;
-transportModel BirdCarreau ; 
-//transportModel Newtonian;
-nu nu	[ 0 2 -1 0 0 0 0 ] 10 ; 
+//transportModel BirdCarreau ; 
+transportModel Newtonian;
+nu nu	[ 0 2 -1 0 0 0 0 ] 30 ; 
 
 BirdCarreauCoeffs
 {
