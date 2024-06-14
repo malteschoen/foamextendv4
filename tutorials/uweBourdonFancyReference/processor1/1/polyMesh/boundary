@@ -1,0 +1,85 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     5.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       polyBoundaryMesh;
+    location    "1/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+9
+(
+    rightHand
+    {
+        type            patch;
+        nFaces          832;
+        startFace       86751;
+    }
+    outerRadius
+    {
+        type            patch;
+        nFaces          750;
+        startFace       87583;
+    }
+    leftHand
+    {
+        type            patch;
+        nFaces          833;
+        startFace       88333;
+    }
+    outlet
+    {
+        type            patch;
+        nFaces          0;
+        startFace       89166;
+    }
+    inlet
+    {
+        type            patch;
+        nFaces          0;
+        startFace       89166;
+    }
+    innerRadius
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          950;
+        startFace       89166;
+        closedSolidBodyMotion false;
+    }
+    oldInternalFaces
+    {
+        type            wall;
+        inGroups        1(empty);
+        nFaces          1960;
+        startFace       90116;
+        closedSolidBodyMotion false;
+    }
+    procBoundary1to2
+    {
+        type            processor;
+        nFaces          2045;
+        startFace       92076;
+        myProcNo        1;
+        neighbProcNo    2;
+    }
+    procBoundary1to0
+    {
+        type            processor;
+        nFaces          1930;
+        startFace       94121;
+        myProcNo        1;
+        neighbProcNo    0;
+    }
+)
+
+
+// ************************************************************************* //

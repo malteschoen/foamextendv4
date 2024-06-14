@@ -17,13 +17,13 @@ FoamFile
 
 application     elasticSolidFoam;
 
-startFrom       latestTime;
+startFrom       startTime;
 
-startTime       0;
+startTime       1;
 
 stopAt          endTime;
 
-endTime         1500;
+endTime         26;
 
 deltaT          1;
 

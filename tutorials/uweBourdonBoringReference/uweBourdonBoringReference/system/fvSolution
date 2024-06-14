@@ -1,0 +1,141 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    U
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-07;
+        relTol          0.1;
+    }
+	
+	p
+    {
+        solver           GAMG;
+        tolerance        1e-7;
+        relTol           0.1;
+        smoother         GaussSeidel;
+        nPreSweeps       0;
+        nPostSweeps      2;
+        cacheAgglomeration on;
+        agglomerator     faceAreaPair;
+        nCellsInCoarsestLevel 10;
+        mergeLevels      1;
+    }
+
+
+    Phi
+    {
+        $p;
+    }
+
+    W
+    {
+        solver           smoothSolver;
+        smoother         GaussSeidel;
+        tolerance        1e-8;
+        relTol           0.1;
+        nSweeps          1;
+    }
+	
+	T
+    {
+        solver           smoothSolver;
+        smoother         DILUGaussSeidel;
+        tolerance        1e-6;
+        relTol           0.01;
+        maxIter		 	100;
+    }
+	
+	concentration
+    {
+        solver           smoothSolver;
+        smoother         DILUGaussSeidel;
+        tolerance        1e-6;
+        relTol           0.01;
+        maxIter		 	100;
+    }
+	residenceTime
+    {
+        solver           smoothSolver;
+        smoother         DILUGaussSeidel;
+        tolerance        1e-6;
+        relTol           0.01;
+        maxIter		 	100;
+    }	
+	
+}
+
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0;
+    consistent      yes;
+
+    residualControl
+    {
+        p               	1e-4;
+        W               	1e-4;
+        T					1e-4;
+		concentration 		1e-4;
+		residenceTime		1e-4;
+    }
+}
+
+potentialFlow
+{
+    nNonOrthogonalCorrectors 0;
+}
+
+relaxationFactors
+{
+    fields
+    {
+	p		0.3;
+    }
+    equations
+    {
+        W               0.7;
+		T				0.7;
+		concentration	0.7;
+		residenceTime	0.7;
+    }
+}
+
+solidMechanics
+{
+    nCorrectors           10000;
+    U                     5e-05;
+    //divSigmaExp           surface;
+    divSigmaExp           surface;
+    //divSigmaExp           decompose;
+    //divSigmaExp           laplacian;
+    historyPatch           banana;
+    solidInterfaceMethod  smallStrainCorrected;
+    predictor             no;
+    infoFrequency         100;
+    aitkenRelaxation      yes;
+}
+
+relaxationFactors
+{
+  //U   0.9;
+}
+
+
+// ************************************************************************* //

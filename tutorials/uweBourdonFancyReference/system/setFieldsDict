@@ -1,0 +1,54 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  6.0                                   |
+|   \\  /    A nd           | Website:  https://openfoam.org                  |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+            volScalarFieldValue materials 1	//indicates non-fluid part of the mesh
+            volScalarFieldValue DT 1e-5	//thermal diffusivity of some generic steel
+
+);
+
+regions
+(
+    	cylinderToCell
+   	{
+       	p1       (0 0 2e-3); // start point on cylinder axis
+       	p2       (0 0 22e-3);   // end point on cylinder axis
+       	radius   63e-3;
+       	fieldValues
+        (
+            volScalarFieldValue materials 0	//indicates fluid part of the mesh
+            volScalarFieldValue DT 1e-7		//thermal diffusivity of some generic plastics melt
+        );
+    	}
+
+    	cylinderToCell
+   	{
+       	p1       (0 0 2e-3); // start point on cylinder axis
+       	p2       (0 0 22e-3);   // end point on cylinder axis
+       	radius   61e-3;
+       	fieldValues
+        (
+            volScalarFieldValue materials 1	//indicates non-fluid part of the mesh
+            volScalarFieldValue DT 1e-5	//thermal diffusivity of some generic steel
+        );
+    	}	
+   
+);
+
+ 
+
+// *********************

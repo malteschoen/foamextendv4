@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | foam-extend: Open Source CFD                    |
-|  \\    /   O peration     | Version:     4.0                                |
+|  \\    /   O peration     | Version:     5.0                                |
 |   \\  /    A nd           | Web:         http://www.foam-extend.org         |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -19,22 +19,22 @@ profilingInfo
 (
 
     {
-        id              10;
-        parentId        9;
+        id              8;
+        parentId        7;
         description     "Foam::Time::writeObject - outputTime";
         calls           1;
-        totalTime       4.17887;
+        totalTime       0.865689;
         childTime       0;
         onStack         1;
     }
 
     {
-        id              9;
+        id              7;
         parentId        1;
         description     "Foam::Time::writeObject";
         calls           1;
-        totalTime       4.18028;
-        childTime       4.17887;
+        totalTime       0.865862;
+        childTime       0.865689;
         onStack         1;
     }
 
@@ -42,77 +42,57 @@ profilingInfo
         id              1;
         description     "application::main";
         calls           1;
-        totalTime       4926.22;
-        childTime       4608.15;
+        totalTime       2144.52;
+        childTime       1974.68;
         onStack         1;
-    }
-
-    {
-        id              3;
-        parentId        2;
-        description     "functionObjectList::read";
-        calls           1;
-        totalTime       5e-06;
-        childTime       0;
-        onStack         0;
-    }
-
-    {
-        id              8;
-        parentId        1;
-        description     "functionObjects_.execute()";
-        calls           24;
-        totalTime       0.000141;
-        childTime       0;
-        onStack         0;
     }
 
     {
         id              2;
         parentId        1;
-        description     "functionObjects_.start()";
+        description     "functionObjectList::read";
         calls           1;
-        totalTime       2.5e-05;
-        childTime       5e-06;
+        totalTime       1.2e-05;
+        childTime       0;
+        onStack         0;
+    }
+
+    {
+        id              3;
+        parentId        1;
+        description     "fvMatrix::solve_U";
+        calls           3239;
+        totalTime       1973.81;
+        childTime       1957.53;
         onStack         0;
     }
 
     {
         id              4;
-        parentId        1;
-        description     "fvMatrix::solve_U";
-        calls           3811;
-        totalTime       4603.97;
-        childTime       4536.46;
+        parentId        3;
+        description     "lduMatrix::solver_Ux";
+        calls           3239;
+        totalTime       692.009;
+        childTime       0;
         onStack         0;
     }
 
     {
         id              5;
-        parentId        4;
-        description     "lduMatrix::solver_Ux";
-        calls           3811;
-        totalTime       1069.63;
+        parentId        3;
+        description     "lduMatrix::solver_Uy";
+        calls           3239;
+        totalTime       955.176;
         childTime       0;
         onStack         0;
     }
 
     {
         id              6;
-        parentId        4;
-        description     "lduMatrix::solver_Uy";
-        calls           3811;
-        totalTime       1620.5;
-        childTime       0;
-        onStack         0;
-    }
-
-    {
-        id              7;
-        parentId        4;
+        parentId        3;
         description     "lduMatrix::solver_Uz";
-        calls           3811;
-        totalTime       1846.33;
+        calls           3239;
+        totalTime       310.348;
         childTime       0;
         onStack         0;
     }
