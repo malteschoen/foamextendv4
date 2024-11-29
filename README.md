@@ -10,11 +10,11 @@ we have solvers for extrusion operation (stationary, incompressible) taking into
 # i just wanna try solid mechanics
 * splendid!
 * before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE
-  * go to applications/solvers/incompressible/wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE
-  * run wmake
+  * go to 'applications/solvers/incompressible/wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE'
+  * run 'wmake'
 * also, you will need to compile immersedTauFastenerElasticSolidFoam 
-  * go to /applications/solvers/solidMechanics/immersedTauFastenerElasticSolidFoam
-  * run wmake
+  * go to '/applications/solvers/solidMechanics/immersedTauFastenerElasticSolidFoam'
+  * run 'wmake'
 * then head for the tutorialSolidMechanics folder
 * having arrived there, follow the local readMe instructions
 
@@ -22,8 +22,8 @@ we have solvers for extrusion operation (stationary, incompressible) taking into
 # i just wanna try the heat-sink stuff
 * excellent!
 * before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE.
-  *  go to applications/solvers/incompressible/wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE
-  *  run wmake
+  *  go to 'applications/solvers/incompressible/wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE'
+  *  run 'wmake'
 * then head for the tutorialHeatSink folder
 * having arrived there, follow the local readMe instructions
 
@@ -32,9 +32,9 @@ we have solvers for extrusion operation (stationary, incompressible) taking into
 * before you go ahead, you'll need to compile wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE
   *  go to applications/solvers/incompressible/wDissipationTempConcentrationResidenceBlockageSinkTauSimpleFoamV4FE
   *  run wmake
-* also you'll need to compile the DoubleGermanCarreau material model from /src/transportModels/incompressible using wmake libso
-  *  go to /src/transportModels/incompressible/DoubleGermanCarreau
-  *  run wmake libso
+* also you'll need to compile the DoubleGermanCarreauConcentration material model (among others) from /src/transportModels/incompressible using wmake libso
+  *  go to '/src/transportModels/incompressible/'
+  *  run 'wmake libso'
 * then head for the tutorialCoextrusion folder
 * having arrived there, follow the local readMe instructions
 
