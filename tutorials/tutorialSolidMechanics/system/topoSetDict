@@ -19,14 +19,14 @@ actions
 (
 
 {
-        //marks all cells with distance of less than 5 mm from parting plane (x=0) for removal
+        //marks all cells with vertical distance of less than 3 mm from parting plane (x=0) for removal
 	name    cellsToBeRemoved;
         type    cellSet;
         action  new;
         source  boxToCell;
         sourceInfo
         {
-		box   (-5e-3 -100 -100) (5e-3 100 100);
+		box   (-3e-3 -100 -100) (3e-3 100 100);
     	}
 		
 
@@ -34,7 +34,7 @@ actions
     
 
 {
-        //however, cells close to stl may stay and form sealing surface
+        //however, cells inside the stl and those on the outside in close proximity may stay and form sealing surface
 	name    cellsToBeRemoved;
         type    cellSet;
         action  delete;
@@ -46,16 +46,16 @@ actions
    
 		file			"flowChannel.stl";
 
-		outsidePoints	((0 0 10e-3));
+		outsidePoints	((0 0 -10e-3));
 		useSurfaceOrientation false;
 		
 		
 		//enable one of the following five
-		nearDistance 	0.010;		//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
-		includeInside	false;		// pick all cells entirely within the geometry.stl
+		nearDistance 	7.5e-3;		//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
+		includeInside	true;		// pick all cells entirely within the geometry.stl
 		includeOutside	false;		// pick all cells entirely outside of geometry.stl
-		includeCut		true;		// pick all cells intersected by geometry.stl
-		curvature		1;		//-100 means deactivated, combine this with nearDistance
+		includeCut	true;		// pick all cells intersected by geometry.stl
+		curvature	-100;		//-100 means deactivated, combine this with nearDistance
 			
 	}
 }
@@ -63,7 +63,7 @@ actions
 
 
 {
-       //however, cells close to stl may stay and form sealing surface
+       //however, cells inside the stl and those on the outside in close proximity may stay and form sealing surface
 	name    cellsToBeRemoved;
         type    cellSet;
         action  delete;
@@ -80,11 +80,11 @@ actions
 		
 		
 		//enable one of the following five
-		nearDistance 	0.010;		//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
-		includeInside	false;		// pick all cells entirely within the geometry.stl
+		nearDistance 	5e-3;		//-1 means deactivated, otherwise: pick all cells within [value] m of geometry.stl
+		includeInside	true;		// pick all cells entirely within the geometry.stl
 		includeOutside	false;		// pick all cells entirely outside of geometry.stl
 		includeCut	true;		// pick all cells intersected by geometry.stl
-		curvature	1;		//-100 means deactivated, combine this with nearDistance
+		curvature	-100;		//-100 means deactivated, combine this with nearDistance
 			
 	}
 		
