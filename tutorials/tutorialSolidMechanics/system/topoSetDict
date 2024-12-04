@@ -64,7 +64,7 @@ actions
 
 {
        //however, cells inside the stl and those on the outside in close proximity may stay and form sealing surface
-	name    cellsToBeRemoved;
+		name    cellsToBeRemoved;
         type    cellSet;
         action  delete;
         source  surfaceToCell;
@@ -91,6 +91,12 @@ actions
 
 }
 
+{
+        
+		name    cellsToBeRemoved;
+        type    cellSet;
+        action  invert;
+}
 
 
 );

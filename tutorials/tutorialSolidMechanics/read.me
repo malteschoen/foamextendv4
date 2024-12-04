@@ -10,3 +10,7 @@
 
 6. Run immersedTauFastenerElasticSolidFoam to calculate the fields of displacement ("U") and stress ("sigma")
 
+7. If you wish, you can run  "subsetMesh -overwrite cellsToBeRemoved" to remove cells that are in the parting plane but do not form the sealing surfaces. Do note that you will need to modify /constant/polyMesh/boundary by changing the type of oldInternalFaces from empty to wall.
+
+8. Diving even deeper, you may modify /system/topoSetDict to change the logic by which the cellSet is produced.
+
