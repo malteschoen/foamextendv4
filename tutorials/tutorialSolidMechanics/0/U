@@ -30,6 +30,14 @@ boundaryField
         value           uniform (0 0 0);
     }
 
+    oldInternalFaces
+    {
+        type            solidTraction;
+        traction        uniform ( 0 0 0 );
+        pressure        uniform 0;
+        value           uniform (0 0 0);
+    }
+
     wall
     {
         type            solidTraction;

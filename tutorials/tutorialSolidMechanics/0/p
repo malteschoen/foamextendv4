@@ -31,6 +31,12 @@ boundaryField
         type            zeroGradient;
     }
 
+    oldInternalFaces
+    {
+        type            zeroGradient;
+    }
+
+
     wall
     {
         type            zeroGradient;

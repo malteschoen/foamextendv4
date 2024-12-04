@@ -24,12 +24,12 @@ boundaryField
     defaultName
     {
         type            fixedValue;
-        value		uniform (0 0 0);
+        value			uniform (0 0 0);
     }
     wall
     {
         type            fixedValue;
-        value		uniform (0 0 0);
+        value			uniform (0 0 0);
     }
     outlet
     {
@@ -121,13 +121,20 @@ boundaryField
 	
 	rightInlet
     {
-        type            fixedValue;
+        type        fixedValue;
         value		uniform (0 -0.01 0);
     }
+	
 	leftInlet
     {
-        type            fixedValue;
+        type        fixedValue;
         value		uniform (0 0.01 0);
+    }	
+	
+	oldInternalFaces
+    {
+        type            fixedValue;
+        value			uniform (0 0 0);
     }	
 	
 }

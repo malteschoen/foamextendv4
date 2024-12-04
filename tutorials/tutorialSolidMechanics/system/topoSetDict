@@ -86,7 +86,7 @@ actions
 		includeCut	true;		// pick all cells intersected by geometry.stl
 		curvature	-100;		//-100 means deactivated, combine this with nearDistance
 			
-	}
+		}
 		
 
 }

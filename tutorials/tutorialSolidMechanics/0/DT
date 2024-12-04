@@ -71919,6 +71919,11 @@ boundaryField
     {
         type            zeroGradient;
     }
+	
+	oldInternalFaces
+    {
+        type            zeroGradient;
+    }
 }
 
 
